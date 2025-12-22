@@ -1,0 +1,9 @@
+{
+	"_comment": "Выбирите на чем вы хотите работать, писать только 'html' или 'pug'",
+	"markupType": "html",
+
+	"localtunnel": {
+		"enabled": true,
+		"subdomain": "kingoffdarkness"
+	}
+}

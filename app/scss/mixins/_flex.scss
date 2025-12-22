@@ -1,0 +1,50 @@
+@mixin fac {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin fcc {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@mixin fcch {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+@mixin fcsb {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin fsb {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin fvc {
+  display: flex;
+  justify-content: center;
+}
+
+@mixin fhc {
+	display: flex;
+  align-items: center;
+}
+
+@mixin fcs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+@mixin fssb {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}

@@ -1,0 +1,32 @@
+/* stylelint-disable at-rule-empty-line-before */
+@use 'sass:math';
+@use './fluid-sizes'as *;
+
+@mixin square($width: 24, $height: 24) {
+	width: #{rem($width)};
+	height: #{rem($height)};
+}
+
+@mixin ac {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin ac-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin ac-y{
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin transition($param: all, $speed: 0.3s, $anim: ease-in) {
+	transition: $param $speed $anim;
+}
+

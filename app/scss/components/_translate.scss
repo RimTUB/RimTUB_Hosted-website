@@ -1,0 +1,96 @@
+/* stylelint-disable shorthand-property-no-redundant-values */
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+
+.translate {
+	position: relative;
+
+	&.open {
+		.translate__list {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+
+		.translate__choose {
+			color: $accent;
+		}
+	}
+
+	@include laptop {
+		display: flex;
+		justify-content: center;
+		margin-top: rem(40);
+	}
+
+	&__list {
+		@include fcc;
+
+		position: absolute;
+		right: -25%;
+		top: 100%;
+		border-radius: rem(8);
+		padding: rem(10) rem(4);
+		box-shadow: rem(2) rem(2) rem(10) rgba(157, 107, 255, 0.5);
+		background-color: $background-accent;
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity var(--transition), visibility var(--transition);
+		pointer-events: none;
+		row-gap: rem(10);
+
+		@include laptop {
+			right: auto;
+		}
+	}
+
+	&__item {
+		padding-inline: rem(5);
+
+		&.active {
+			border-radius: rem(7);
+			background-color: $base;
+
+			.translate__link {
+				color: $white;
+			}
+		}
+	}
+
+	&__link {
+		text-decoration: none;
+
+		@include hover {
+			color: $accent-2;
+		}
+
+		@include focus;
+
+		&:not(.translate__choose) {
+			display: inline-block;
+			width: 100%;
+		}
+	}
+
+	&__choose {
+		position: relative;
+		font-size: rem(18);
+
+		@include hover {
+			&::after {
+				width: 100%;
+			}
+		}
+
+		&::before {
+			@include ac-y;
+
+			content: '';
+			left: 108%;
+			border-style: solid;
+			border-width: rem(7) rem(5) 0 rem(5);
+			border-color: $text-accent transparent transparent transparent;
+		}
+	}
+}

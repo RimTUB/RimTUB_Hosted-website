@@ -1,0 +1,44 @@
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+
+.burger {
+	z-index: 11;
+	display: none;
+
+	@include focus;
+
+	@include laptop {
+		position: relative;
+		display: inline-flex;
+		flex-direction: column;
+		align-items: center;
+		row-gap: rem(5);
+	}
+
+	&__line {
+		border-radius: rem(20);
+		width: rem(30);
+		height: rem(3);
+		background-color: $accent;
+		transition: transform var(--transition), opacity var(--transition);
+
+		&:nth-child(1) {
+			.header.open & {
+				transform: translateY(rem(8)) rotate(45deg);
+			}
+		}
+
+		&:nth-child(2) {
+			.header.open & {
+				opacity: 0;
+			}
+		}
+
+		&:nth-child(3) {
+			.header.open & {
+				transform: translateY(rem(-8)) rotate(-45deg);
+			}
+		}
+	}
+}

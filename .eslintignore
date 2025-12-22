@@ -1,0 +1,4 @@
+dist/**/*.js
+app/js/libs/**/*
+node_modules
+.htmlhintrc

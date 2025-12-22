@@ -1,0 +1,6 @@
+/* stylelint-disable at-rule-empty-line-before */
+@function fluid-text($max-font: 48, $min-font: 16, $max-vw: 1920, $min-vw: 360) {
+  $font: $max-font - $min-font;
+  $viewport: $max-vw - $min-vw;
+  @return clamp(#{$min-font}px, calc(#{$min-font}px + #{$font} * (100vw - #{$min-vw}px) / #{$viewport}), #{$max-font}px);
+}

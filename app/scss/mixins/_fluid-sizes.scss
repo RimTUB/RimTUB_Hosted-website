@@ -1,0 +1,33 @@
+/* stylelint-disable at-rule-empty-line-before */
+@use 'sass:math';
+@use '../base' as *;
+
+@function fluid($max: 48, $min: 16) {
+	$maxViewportWidth: $width-web;
+	$minViewportWidth: $width-min-web;
+	$maxSize: math.div($max, 16);
+	$minSize: math.div($min, 16);
+	$maxWidth: math.div($maxViewportWidth, 16);
+	$minWidth: math.div($minViewportWidth, 16);
+	$slope: math.div(($maxSize - $minSize), ($maxWidth - $minWidth));
+	$yAxisIntersection: -$minWidth * $slope + $minSize;
+	@return clamp(#{$minSize * 1rem},
+		#{$yAxisIntersection * 1rem} + #{$slope * 100vw},
+		#{$maxSize * 1rem});
+}
+
+@function vw($px, $base: $width-web) {
+  @return math.div($px, $base) * 100vw;
+}
+
+@function vh($px, $base: $height-web) {
+  @return math.div($px, $base) * 100vh;
+}
+
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+@function em($px, $base: 16) {
+  @return math.div($px, $base) * 1em;
+}

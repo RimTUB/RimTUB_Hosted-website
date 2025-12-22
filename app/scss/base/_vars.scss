@@ -1,0 +1,29 @@
+$white: #fff;
+$black: #000;
+$base: #7B5CFA;
+$background-base: #0B0F2B;
+$background-secondary: #121740;
+$background-accent: #191F5C;
+$accent: #9D6BFF;
+$accent-2: #C77DFF;
+$accent-3: #5EE1FF;
+$text: #C7CBFF;
+$text-accent: #8B90D9;
+
+
+
+// offsets
+$offset: 1.25rem;
+
+// width and height website | required
+$width-web: 1920; // обязательно без единицы измерения
+$width-min-web: 360; // обязательно без единицы измерения
+$height-web: 67.5rem;
+
+
+
+:root {
+	--container:  76.875rem;
+	--container-offset: .9375rem;
+	--transition: 0.3s ease-in;
+}

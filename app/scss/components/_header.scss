@@ -1,0 +1,22 @@
+@use '../base' as *;
+@use '../mixins' as *;
+@use '../settings' as *;
+
+.header {
+	position: fixed;
+	left: 0;
+	right: 0;
+	background-color: $background-secondary;
+
+	&__container {
+		@include fcsb;
+
+		padding-block: rem(15);
+	}
+
+	&__right {
+		@include fhc;
+
+		column-gap: calc(#{$offset} * 3.5);
+	}
+}

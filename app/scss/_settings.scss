@@ -1,0 +1,103 @@
+@use './base'as *;
+@use './mixins/fluid-sizes'as *;
+
+@mixin hover-strip {
+	position: relative;
+	
+	&::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		bottom: rem(-5);
+		width: 0;
+		height: rem(2);
+		background: linear-gradient(135deg, $base 0%, $accent-2 100%);
+		transition: width var(--transition);
+	}
+}
+
+.bg-bubbles {
+	position: fixed;
+	inset: 0;
+	z-index: -1;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+.bg-bubbles span {
+	position: absolute;
+	bottom: -200px;
+	border-radius: 50%;
+	opacity: 0;
+	filter: blur(2px);
+	animation: float 10s linear infinite,
+		hue 12s ease-in-out infinite;
+}
+
+.bg-bubbles span:nth-child(1) {
+	left: 10%;
+	width: 120px;
+	height: 120px;
+	background: radial-gradient(circle,
+			rgba(157, 107, 255, .35),
+			transparent 70%);
+	animation-delay: 0s;
+}
+
+.bg-bubbles span:nth-child(2) {
+	left: 30%;
+	width: 200px;
+	height: 200px;
+	background: radial-gradient(circle,
+			rgba(123, 92, 250, .35),
+			transparent 70%);
+	animation-delay: 6s;
+}
+
+.bg-bubbles span:nth-child(3) {
+	left: 55%;
+	width: 90px;
+	height: 90px;
+	background: radial-gradient(circle,
+			rgba(199, 125, 255, .35),
+			transparent 70%);
+	animation-delay: 12s;
+}
+
+.bg-bubbles span:nth-child(4) {
+	left: 75%;
+	width: 260px;
+	height: 260px;
+	background: radial-gradient(circle,
+			rgba(94, 225, 255, .25),
+			transparent 70%);
+	animation-delay: 18s;
+}
+
+@keyframes float {
+	0% {
+		opacity: 0;
+		transform: translateY(0) translateX(0);
+	}
+
+	10% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateY(-120vh) translateX(80px);
+	}
+}
+
+
+@keyframes hue {
+	0% {
+		filter: hue-rotate(0deg) blur(2px);
+	}
+
+	100% {
+		filter: hue-rotate(30deg) blur(2px);
+	}
+}
+
