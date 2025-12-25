@@ -1,0 +1,59 @@
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+@use 'sass:color';
+
+@mixin copyright-link {
+	text-decoration: none;
+	color: $base;
+	transition: color var(--transition);
+
+	@include hover {
+		color: color.adjust($base, $lightness: 11%, $saturation: 50%);
+	}
+}
+
+.copyright {
+	color: $text-accent;
+
+	@include mobile {
+		font-size: rem(14);
+	}
+
+	&__text {
+		margin: 0;
+		font-weight: 500;
+		text-align: center;
+	}
+
+	&__link {
+		text-align: center;
+
+		a {
+			@include copyright-link;
+		}
+	}
+
+	&__links {
+		text-align: center;
+
+		a {
+			@include copyright-link;
+		}
+	}
+
+	&__top {
+		margin-bottom: $offset;
+	}
+
+	&__bottom {
+		@include fcch;
+
+		border-top: rem(1) solid $accent;
+		padding-top: $offset;
+
+		a {
+			@include copyright-link;
+		}
+	}
+}

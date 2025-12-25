@@ -1,0 +1,64 @@
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+@use 'sass:color';
+
+.steps {
+	counter-reset: step;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	list-style: none;
+	margin: 0;
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: rem(18);
+		top: 0;
+		bottom: 0;
+		width: rem(2);
+		background-color: $text-accent;
+	}
+
+	&__item {
+		position: relative;
+		padding-left: rem(15);
+
+		&:not(:last-child) {
+			margin-bottom: rem(40);
+		}
+
+		&::before {
+			@include fac;
+
+			counter-increment: step;
+			content: counter(step);
+			position: absolute;
+			left: rem(-44);
+			top: 0;
+			z-index: 1;
+			border: rem(2) solid $text;
+			border-radius: 50%;
+			width: rem(48);
+			height: rem(48);
+			font-size: rem(18);
+			text-align: center;
+			color: $white;
+			background: rgba($base, 0.6);
+			backdrop-filter: blur(2px);
+		}
+	}
+
+	&__title {
+		margin: 0;
+		margin-bottom: rem(10);
+		font-weight: 600;
+		font-size: fluid(24, 18);
+		color: $text-accent;
+	}
+
+	&__descr {
+		margin: rem(5) 0;
+	}
+}

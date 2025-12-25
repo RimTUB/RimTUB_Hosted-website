@@ -3,11 +3,7 @@
 @use '../settings'as *;
 
 .logo {
-	font-size: rem(40);
-
-	@include tablet-min {
-		font-size: rem(30);
-	}
+	font-size: fluid(45, 30);
 
 	&__link {
 		font-weight: 700;

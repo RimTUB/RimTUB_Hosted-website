@@ -1,0 +1,8 @@
+@use '../base' as *;
+@use '../mixins' as *;
+@use '../settings' as *;
+
+.work {
+	background: $background-secondary;
+	padding-block: rem(80);
+}
