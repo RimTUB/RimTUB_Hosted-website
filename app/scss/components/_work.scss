@@ -1,8 +1,9 @@
 @use '../base' as *;
 @use '../mixins' as *;
 @use '../settings' as *;
+@use 'sass:color';
 
 .work {
-	background: $background-secondary;
+	background: color.adjust($base, $lightness: -40%, $saturation: -40%);
 	padding-block: rem(80);
 }
