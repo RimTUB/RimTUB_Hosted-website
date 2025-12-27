@@ -32,7 +32,7 @@
 				<h3 class="steps__title">Создание RimTUB сервера</h3>
 				<p class="steps__descr">Вернитесь в бота, нажмите Управление RimTUB → Создать.</p>
 				<p class="steps__descr">Система автоматически:</p>
-				<ul>
+				<ul class="steps__sub">
 					<li>Выделит необходимые ресурсы</li>
 					<li>Создаст Docker-контейнер</li>
 					<li>Скачает и установит RimTUB</li>
@@ -42,16 +42,15 @@
 
 			<li class="steps__item">
 				<h3 class="steps__title">Создание Telegram-бота</h3>
-				<p class="steps__descr">А пока идёт установка, откройте Telegram и найдите <a
-						href="https://t.me/BotFather">@BotFather</a>.</p>
+				<p class="steps__descr">А пока идёт установка, откройте Telegram и найдите <a href="https://t.me/BotFather" target="_blank">@BotFather</a>.</p>
 
-				<ol>
+				<ol class="steps__sub">
 					<li>Нажмите Start или напишите /start</li>
 					<li>Введите /newbot</li>
 					<li>Придумайте имя для вашего бота (например, RimTUB_<твой ник>_bot)</li>
 					<li>Установите ссылку для бота</li>
 					<li>BotFather пришлёт вам длинный токен вида: 123456:ABC-DEF…</li>
-					<li data-steps-important>
+					<li class="steps__sub-important">
 						<p>Важно: введите /setinline, выберите ваш бот и напишите любой текст (например, asdfjwekjdsf)</p>
 					</li>
 				</ol>
@@ -63,7 +62,15 @@
 				<h3 class="steps__title">Запуск вашего юзербота</h3>
 				<p class="steps__descr">После загрузки в Telegram вам придёт пятизначный код подтверждения. В консоли введите
 					этот
-					код (напишите его в поле » Type a command )</p>
+					код (напишите его в поле <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
+						aria-hidden="true" class="steps__icon">
+						<path fill-rule="evenodd"
+							d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+							clip-rule="evenodd"></path>
+						<path fill-rule="evenodd"
+							d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+							clip-rule="evenodd"></path>
+					</svg> <span class="steps__command">Type a command</span>)</p>
 				<p class="steps__descr">Если у вас установлен облачный пароль на аккаунт Telegram, введите его.</p>
 				<p class="steps__descr">Повторите для всех аккаунтов (если их несколько)</p>
 				<p class="steps__descr">Подождите пока все запустится — и готово! Ваш юзербот работает.</p>
@@ -71,11 +78,12 @@
 
 			<li class="steps__item">
 				<h3 class="steps__title">Финальная авторизация</h3>
-				<p class="steps__descr">Откройте панель управления Pterodactyl (используйте вашу почту для входа).</p>
+				<p class="steps__descr">Откройте панель управления <a href="https://panel.rimmirk.dev" target="_blank">Pterodactyl</a> (используйте
+					вашу почту для входа).</p>
 				<p class="steps__descr">В панели выберите RimTUB из списка серверов.</p>
 				<p class="steps__descr">Перейдите во вкладку Starup и введите:</p>
 
-				<ul>
+				<ul class="steps__sub">
 					<li>Номер(а) вашего телефона (если несколько — через запятую)</li>
 					<li>Токен бота, который вы скопировали от BotFather</li>
 					<li>Настройте остальные настройки на Ваше усмотрение </li>

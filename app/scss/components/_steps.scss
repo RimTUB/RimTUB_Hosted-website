@@ -20,10 +20,6 @@
 		border-radius: rem(20);
 		width: rem(3);
 		background-color: $text-accent;
-
-		[data-steps-important] {
-			background-color: #f00;
-		}
 	}
 
 	&__item {
@@ -31,7 +27,7 @@
 		padding-left: rem(45);
 
 		@include tablet {
-			padding-left: rem(36);
+			padding-left: rem(30);
 		}
 
 		&:not(:last-child) {
@@ -81,28 +77,31 @@
 		}
 	}
 
-	&-ptero-btn {
-		display: inline-block;
-		border-color: rgba(37, 99, 235, 1);
-		border-radius: rem(4);
-		padding: rem(3) rem(7);
-		color: rgba(239, 246, 255, 1);
-		background-color: rgba(59, 130, 246, 1);
-		cursor: default;
-	}
-}
+	&__sub {
+		@include mobile {
+			padding-left: rem(15);
+		}
 
-[data-steps-important] {
-	p {
-		display: inline-block;
-		margin: 0;
-		border-radius: rem(10);
-		padding: rem(3) rem(7);
-		color: $white;
-		background-color: $important-red;
+		&-important {
+			p {
+				display: inline-flex;
+				margin: 0;
+				border-radius: rem(10);
+				padding: rem(3) rem(7);
+				color: $white;
+				background-color: $important-red;
+			}
+		}
 	}
 
-	&::marker {
-		color: $important-red;
+	&__command {
+		color: #7b8793;
+	}
+
+	&__icon {
+		display: inline-flex;
+		vertical-align: middle;
+		width: rem(18);
+		height: rem(18);
 	}
 }
