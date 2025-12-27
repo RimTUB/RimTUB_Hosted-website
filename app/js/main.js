@@ -1,2 +1,2 @@
-import './components/translate.js';
-import './components/menu.js';
+import './components/menu.js'
+import './components/translate.js'

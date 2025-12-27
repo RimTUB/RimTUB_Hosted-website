@@ -14,12 +14,16 @@
 	&::before {
 		content: '';
 		position: absolute;
-		left: rem(27);
+		left: rem(26.5);
 		top: 0;
 		bottom: 0;
 		border-radius: rem(20);
 		width: rem(3);
 		background-color: $text-accent;
+
+		[data-steps-important] {
+			background-color: #f00;
+		}
 	}
 
 	&__item {
@@ -35,7 +39,7 @@
 		}
 
 		&::before {
-			@include fac;
+			@include fvc;
 
 			counter-increment: step;
 			content: counter(step);
@@ -43,13 +47,13 @@
 			left: rem(-44);
 			top: 0;
 			z-index: 1;
+			align-items: flex-end;
 			border: rem(2) solid $text;
 			border-radius: 50%;
 			width: rem(64);
 			height: rem(64);
 			font-family: $family-second;
 			font-size: rem(36);
-			text-align: center;
 			color: $white;
 			background: rgba($base, 0.6);
 			backdrop-filter: blur(rem(2));
@@ -85,5 +89,20 @@
 		color: rgba(239, 246, 255, 1);
 		background-color: rgba(59, 130, 246, 1);
 		cursor: default;
+	}
+}
+
+[data-steps-important] {
+	p {
+		display: inline-block;
+		margin: 0;
+		border-radius: rem(10);
+		padding: rem(3) rem(7);
+		color: $white;
+		background-color: $important-red;
+	}
+
+	&::marker {
+		color: $important-red;
 	}
 }

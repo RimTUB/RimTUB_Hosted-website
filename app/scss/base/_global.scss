@@ -3,14 +3,18 @@
 @use '../mixins/media' as *;
 
 .page-body{
+	position: relative;
 	margin: 0;
   font-family: "Lato", sans-serif;
 	font-weight: 400;
 	line-height: 1.5;
 	color: $text;
-  background: radial-gradient(1200px at 15% 10%, rgba(157, 107, 255, .35), transparent 40%),
-   radial-gradient(900px at 85% 30%, rgba(94, 225, 255, .25), transparent 45%),
+  background: radial-gradient(75rem at 15% 10%, rgba(157, 107, 255, .35), transparent 40%),
+   radial-gradient(56.25rem at 85% 30%, rgba(94, 225, 255, .25), transparent 45%),
    linear-gradient(180deg, #0B0F2B, #121740);
+	 background-size: 100% 100%;
+	 background-repeat: no-repeat;
+	 background-attachment: fixed;
 }
 
 .page, .page-body{
