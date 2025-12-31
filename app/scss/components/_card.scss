@@ -1,0 +1,72 @@
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+@use 'sass:color';
+
+.card {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(rem(400), 1fr));
+	color: color.adjust($text, $lightness: 5%);
+	gap: $offset * 2;
+
+	@include mobile {
+		grid-template-columns: 1fr;
+	}
+
+	&__item {
+		border: rem(1) solid $accent-2;
+		border-radius: rem(20);
+		padding: $offset;
+		box-shadow: 0 rem(3) rem(7) rgba($accent-2, 0.15);
+		background-color: rgba($text, 0.2);
+		transition: transform var(--transition), box-shadow var(--transition);
+
+		@include hover(false) {
+			box-shadow: 0 rem(8) rem(32) rgba($black, 0.25),
+			0 rem(24) rem(60) rgba($base, 0.2),
+			0 0 0 rem(1) rgba($accent-2, 0.15);
+			transform: translate(rem(-4), rem(-8));
+		}
+	}
+
+	&__img {
+		display: block;
+		width: rem(48);
+		height: rem(48);
+	}
+
+	&__title {
+		font-weight: 700;
+		font-size: fluid(28, 24);
+		color: $accent;
+		margin-block: rem(10);
+	}
+
+	&__descr {
+		margin: 0;
+
+		&:not(:last-child) {
+			margin-bottom: rem(7);
+		}
+
+		&:only-child {
+			margin: 0;
+		}
+	}
+
+	&__descr--ptero {
+		padding-left: rem(30);
+		background-image: url('#img/logo/ptero.png');
+		background-position: left top;
+		background-size: rem(24) rem(24);
+		background-repeat: no-repeat;
+	}
+
+	&__descr--rimtub {
+		padding-left: rem(30);
+		background-image: url('#img/logo/rimtub.png');
+		background-position: left top;
+		background-size: rem(24) rem(24);
+		background-repeat: no-repeat;
+	}
+}

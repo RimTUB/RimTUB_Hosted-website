@@ -11,6 +11,7 @@
 @use "./components/menu"as *;
 @use "./components/burger"as *;
 @use "./components/steps"as *;
+@use "./components/card"as *;
 
 // для больших компонентов
 
@@ -18,7 +19,10 @@
 @use "./components/header" as *;
 @use "./components/translate" as *;
 @use "./components/hero" as *;
+@use "./components/why" as *;
 @use "./components/work" as *;
+@use "./components/accordion" as *;
+@use "./components/faq" as *;
 @use "./components/footer" as *;
 @use "./components/copyright" as *;
 

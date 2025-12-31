@@ -1,5 +1,6 @@
 @use './base'as *;
 @use './mixins/fluid-sizes'as *;
+@use './mixins/focus'as *;
 
 @mixin hover-strip {
 	position: relative;
@@ -18,7 +19,7 @@
 
 .title {
 	margin: 0;
-	margin-bottom: rem(15);
+	margin-bottom: rem(20);
 	font-weight: 700;
 	font-size: fluid(36, 28);
 }
@@ -32,4 +33,6 @@
 	color: rgba(239, 246, 255, 1);
 	background-color: rgba(59, 130, 246, 1);
 	cursor: default;
+
+	@include focus($accent-3);
 }

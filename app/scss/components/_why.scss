@@ -1,0 +1,7 @@
+@use '../base' as *;
+@use '../mixins' as *;
+@use '../settings' as *;
+
+.why {
+	padding-block: rem(80);
+}

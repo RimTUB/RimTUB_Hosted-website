@@ -1,7 +1,6 @@
 @use '../base'as *;
 @use '../mixins'as *;
 @use '../settings'as *;
-@use 'sass:color';
 
 .steps {
 	counter-reset: step;
@@ -10,6 +9,10 @@
 	flex-direction: column;
 	list-style: none;
 	margin: 0;
+
+	a {
+		@include focus;
+	}
 
 	&::before {
 		content: '';
@@ -52,7 +55,7 @@
 			font-size: rem(36);
 			color: $white;
 			background: rgba($base, 0.6);
-			backdrop-filter: blur(rem(2));
+			backdrop-filter: blur(rem(4));
 
 			@include tablet {
 				left: rem(-36);
@@ -89,7 +92,7 @@
 				border-radius: rem(10);
 				padding: rem(3) rem(7);
 				color: $white;
-				background-color: $important-red;
+				background-color: rgb(255 49 49 / 70%);
 			}
 		}
 	}

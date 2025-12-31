@@ -1,0 +1,7 @@
+@use '../base' as *;
+@use '../mixins' as *;
+@use '../settings' as *;
+
+.faq {
+	padding: rem(80) 0;
+}
