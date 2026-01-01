@@ -18,7 +18,7 @@
 		border-radius: rem(20);
 		padding: $offset;
 		box-shadow: 0 rem(3) rem(7) rgba($accent-2, 0.15);
-		background-color: rgba($text, 0.2);
+		background-color: rgba(color.scale($text, $lightness: -30%), 0.3);
 		transition: transform var(--transition), box-shadow var(--transition);
 
 		@include hover(false) {
@@ -54,19 +54,8 @@
 		}
 	}
 
-	&__descr--ptero {
-		padding-left: rem(30);
-		background-image: url('#img/logo/ptero.png');
-		background-position: left top;
-		background-size: rem(24) rem(24);
-		background-repeat: no-repeat;
-	}
-
-	&__descr--rimtub {
-		padding-left: rem(30);
-		background-image: url('#img/logo/rimtub.png');
-		background-position: left top;
-		background-size: rem(24) rem(24);
-		background-repeat: no-repeat;
+	&__descr-img {
+		vertical-align: top;
+		margin-inline: rem(-3);
 	}
 }

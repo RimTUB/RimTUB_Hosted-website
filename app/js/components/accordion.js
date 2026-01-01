@@ -1,41 +1,41 @@
 class Accordion {
-  constructor(element) {
-    this.element = element
-    this.openButton = element.querySelector('.accordion__open')
-    this.content = element.querySelector('.accordion__content')
+	constructor(element) {
+		this.element = element
+		this.openButton = element.querySelector('.accordion__open')
+		this.content = element.querySelector('.accordion__content')
 
-    if (!this.openButton || !this.content) return
+		if (!this.openButton || !this.content) return
 
-    this.element.addEventListener('click', this.handleClick.bind(this))
-  }
+		this.element.addEventListener('click', this.init.bind(this))
+	}
 
-  handleClick() {
-    const isOpen = this.element.classList.toggle('open')
+	init() {
+		const isOpen = this.element.classList.toggle('open')
 
-    if (isOpen) {
-      this.open()
-    } else {
-      this.close()
-    }
-  }
+		if (isOpen) {
+			this.open()
+		} else {
+			this.close()
+		}
+	}
 
-  open() {
-    this.openButton.setAttribute('aria-expanded', 'true')
-    this.content.setAttribute('aria-hidden', 'false')
-    this.content.style.maxHeight = this.content.scrollHeight + 'px'
-  }
+	open() {
+		this.openButton.setAttribute('aria-expanded', 'true')
+		this.content.setAttribute('aria-hidden', 'false')
+		this.content.style.maxHeight = this.content.scrollHeight + 'px'
+	}
 
-  close() {
-    this.openButton.setAttribute('aria-expanded', 'false')
-    this.content.setAttribute('aria-hidden', 'true')
-    this.content.style.maxHeight = this.content.scrollHeight + 'px'
+	close() {
+		this.openButton.setAttribute('aria-expanded', 'false')
+		this.content.setAttribute('aria-hidden', 'true')
+		this.content.style.maxHeight = this.content.scrollHeight + 'px'
 
-    requestAnimationFrame(() => {
-      this.content.style.maxHeight = '0'
-    })
-  }
+		requestAnimationFrame(() => {
+			this.content.style.maxHeight = '0'
+		})
+	}
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.accordion').forEach(el => new Accordion(el))
+	document.querySelectorAll('.accordion').forEach(el => new Accordion(el))
 })

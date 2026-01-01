@@ -1,0 +1,91 @@
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+
+.features {
+	padding-top: rem(80);
+
+	&__list {
+		counter-reset: benefit-counter;
+	}
+
+	&__item {
+		counter-increment: benefit-counter;
+		display: flex;
+		align-items: flex-start;
+		border-radius: rem(10);
+		padding: $offset;
+		box-shadow: 0 rem(2) rem(12) rgba($base, 0.5);
+		background-color: rgba($base, 0.5);
+		transition: transform var(--transition), box-shadow var(--transition);
+		gap: $offset;
+
+		@include tablet {
+			padding: rem(15);
+		}
+
+		&:not(:last-child) {
+			margin-bottom: $offset * 2;
+		}
+
+		&::before {
+			@include fac;
+
+			content: counter(benefit-counter);
+			flex-shrink: 0;
+			border-radius: 50%;
+			width: rem(60);
+			height: rem(60);
+			box-shadow: 0 rem(2) rem(10) $accent;
+			font-family: $family-second;
+			font-size: 700;
+			font-size: rem(28);
+			color: $white;
+			background: linear-gradient(135deg, $accent-3 0%, $accent 100%);
+			transition: transform var(--transition);
+
+			@include tablet {
+				width: rem(40);
+				height: rem(40);
+				font-size: rem(24);
+			}
+		}
+
+		&:nth-child(odd) {
+			margin-right: auto;
+			margin-left: 0;
+			max-width: 70%;
+
+			@include tablet {
+				max-width: 100%;
+				margin-inline: auto;
+			}
+		}
+
+		&:nth-child(even) {
+			margin-right: 0;
+			margin-left: auto;
+			max-width: 70%;
+
+			@include tablet {
+				max-width: 100%;
+				margin-inline: auto;
+			}
+		}
+	}
+
+	&__content {
+		flex: 1;
+	}
+
+	&__list-title {
+		margin: 0;
+		margin-bottom: rem(10);
+		font-weight: 700;
+		font-size: fluid(26, 22);
+	}
+
+	&__list-descr {
+		margin: 0;
+	}
+}
