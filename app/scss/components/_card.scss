@@ -5,15 +5,9 @@
 
 .card {
 	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(rem(400), 1fr));
-	color: color.adjust($text, $lightness: 5%);
-	gap: $offset * 2;
-
-	@include mobile {
-		grid-template-columns: 1fr;
-	}
 
 	&__item {
+		position: relative;
 		border: rem(1) solid $accent-2;
 		border-radius: rem(20);
 		padding: $offset;

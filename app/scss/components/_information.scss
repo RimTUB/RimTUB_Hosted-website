@@ -1,0 +1,12 @@
+@use '../base' as *;
+@use '../mixins' as *;
+@use '../settings' as *;
+
+
+.information {
+	padding-block: rem(40);
+
+	&--back {
+		background-color: $background-secondary;
+	}
+}

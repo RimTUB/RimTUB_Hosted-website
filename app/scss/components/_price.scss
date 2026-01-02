@@ -1,0 +1,93 @@
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+
+.price {
+	background-color: $background-secondary;
+	padding-block: rem(80);
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fill(minmax(rem(350), 1fr)));
+		gap: $offset;
+	}
+}
+
+.price-info {
+	margin-bottom: $offset * 3;
+
+	&__title {
+		margin: 0;
+		margin-bottom: rem(10);
+		font-weight: 500;
+		font-size: fluid(22, 19);
+	}
+
+	&__list {
+		margin: 0;
+		padding-left: fluid(30, 20);
+	}
+
+	&__text {
+		font-size: rem(17);
+	}
+}
+
+.card-price {
+	position: relative;
+	overflow: hidden;
+	border-radius: rem(10);
+	padding: rem(40);
+	max-width: rem(400);
+	background: linear-gradient(135deg,
+			#cbcff6 8%,
+			$base 30%,
+			$accent 80%),
+		rgba(0, 0, 0, 0.18);
+	background-blend-mode: multiply;
+
+	&:only-child {
+		place-self: center;
+	}
+
+	&::before {
+		content: '';
+		position: absolute;
+		left: rem(-10);
+		top: rem(-5);
+		width: rem(200);
+		height: rem(20);
+		background-color: $text;
+		transform: translate(-40%, -50%) rotate(-45deg);
+		transform-origin: top right;
+		pointer-events: none;
+	}
+
+	&__title {
+		@extend .center;
+
+		margin: 0;
+		margin-bottom: $offset;
+		font-weight: 300;
+		font-size: fluid(26, 22);
+	}
+
+	&__price {
+		@extend .center;
+
+		margin-bottom: $offset;
+		font-weight: 700;
+		font-size: fluid(28, 26);
+	}
+
+	&__features {
+		list-style: disc;
+	}
+
+	&__text {
+		@extend .center;
+
+		margin: 0;
+		margin-top: $offset;
+	}
+}

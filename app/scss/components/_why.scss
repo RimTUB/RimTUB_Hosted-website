@@ -1,7 +1,18 @@
-@use '../base' as *;
-@use '../mixins' as *;
-@use '../settings' as *;
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
+@use 'sass:color';
 
 .why {
 	padding-block: rem(80);
+
+	&__list {
+		grid-template-columns: repeat(auto-fill, minmax(rem(400), 1fr));
+		color: color.adjust($text, $lightness: 5%);
+		gap: $offset * 2;
+
+		@include mobile {
+			grid-template-columns: 1fr;
+		}
+	}
 }

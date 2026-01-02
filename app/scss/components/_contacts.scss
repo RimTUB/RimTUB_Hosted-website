@@ -1,0 +1,37 @@
+@use '../base' as *;
+@use '../mixins' as *;
+@use '../settings' as *;
+
+.contacts {
+	background-color: $background-secondary;
+	padding-block: rem(80);
+
+	&__list {
+		grid-template-columns: repeat(auto-fill, minmax(rem(300), 1fr));
+		gap: $offset;
+
+		&-title {
+			@extend .center;
+
+			margin-bottom: $offset;
+			font-size: fluid(26, 23);
+		}
+	}
+
+	&__item {
+		padding: rem(15);
+	}
+
+	&__link {
+		display: inline-block;
+		width: 100%;
+		text-align: center;
+		text-decoration: none;
+
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+		}
+	}
+}
