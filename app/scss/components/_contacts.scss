@@ -1,6 +1,6 @@
-@use '../base' as *;
-@use '../mixins' as *;
-@use '../settings' as *;
+@use '../base'as *;
+@use '../mixins'as *;
+@use '../settings'as *;
 
 .contacts {
 	background-color: $background-secondary;
@@ -13,13 +13,22 @@
 		&-title {
 			@extend .center;
 
+			margin: 0;
 			margin-bottom: $offset;
 			font-size: fluid(26, 23);
+
+			@include mobile {
+				margin-bottom: rem(10);
+			}
 		}
 	}
 
 	&__item {
 		padding: rem(15);
+
+		@include tablet {
+			padding: rem(10);
+		}
 	}
 
 	&__link {

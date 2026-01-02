@@ -3,7 +3,7 @@
 @use '../settings'as *;
 
 .features {
-	padding-top: rem(80);
+	padding-block: rem(80);
 
 	&__list {
 		counter-reset: benefit-counter;
