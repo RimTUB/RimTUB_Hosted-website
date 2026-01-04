@@ -4,5 +4,6 @@
 		"features": "Features",
 		"price": "Price",
 		"contacts": "Contacts"
-	}
+	},
+	"panel": "Open {0:Pterodactyl control panel} (use your email to log in)."
 }

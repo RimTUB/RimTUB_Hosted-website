@@ -10,6 +10,7 @@ class Menu {
 		this.menu = document.querySelector(this.selectors.menu)
 		this.header = document.querySelector(this.selectors.header)
 		this.body = document.body
+		this.lang = localStorage.getItem('lang')
 
 		this.init()
 	}

@@ -2,15 +2,11 @@
 @use '../mixins' as *;
 @use '../settings' as *;
 
-
-.information {
+.short {
 	padding-block: rem(40);
 
-	&--back {
-		background-color: $background-secondary;
-	}
-
-	a {
-		@include focus;
+	p {
+		font-weight: 500;
+		font-size: fluid(22, 17);
 	}
 }

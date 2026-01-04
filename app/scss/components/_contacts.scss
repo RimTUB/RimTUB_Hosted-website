@@ -37,6 +37,18 @@
 		text-align: center;
 		text-decoration: none;
 
+		&:focus {
+			outline: none;
+		}
+
+		&:focus-visible {
+			&::before {
+				outline: rem(2) solid $accent-3;
+				outline-offset: 0;
+				border-radius: rem(20);
+			}
+		}
+
 		&::before {
 			content: '';
 			position: absolute;
