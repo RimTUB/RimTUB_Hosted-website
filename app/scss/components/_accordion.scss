@@ -28,7 +28,6 @@
 
 	&__open {
 		@include fcsb;
-		@include focus($accent-3);
 
 		column-gap: rem(5);
 		border: rem(1) solid $accent;
@@ -37,6 +36,16 @@
 		width: 100%;
 		background-color: transparent;
 		transition: border-radius var(--transition);
+
+		&:focus {
+			outline: 0;
+		}
+
+		&:focus-visible {
+			outline: rem(2) solid $accent-3;
+			outline-offset: 0;
+			border-radius: var(--radius);
+		}
 
 		@include mobile {
 			padding: rem(15);

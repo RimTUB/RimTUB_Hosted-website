@@ -6,6 +6,13 @@
 	background-color: $background-secondary;
 	padding-block: rem(80);
 
+	&__icon {
+		display: block;
+		margin-bottom: rem(5);
+		width: 100%;
+		object-fit: cover;
+	}
+
 	&__list {
 		grid-template-columns: repeat(auto-fill, minmax(rem(300), 1fr));
 		gap: $offset;
@@ -14,7 +21,7 @@
 			@extend .center;
 
 			margin: 0;
-			margin-bottom: $offset;
+			margin-bottom: rem(15);
 			font-size: fluid(26, 23);
 
 			@include mobile {
@@ -24,7 +31,7 @@
 	}
 
 	&__item {
-		padding: rem(15);
+		padding: $offset rem(15);
 
 		@include tablet {
 			padding: rem(10);
@@ -32,27 +39,46 @@
 	}
 
 	&__link {
-		display: inline-block;
-		width: 100%;
-		text-align: center;
-		text-decoration: none;
+		@extend .center;
 
-		&:focus {
-			outline: none;
-		}
+		a {
+			display: inline-block;
+			font-size: fluid(20, 17);
 
-		&:focus-visible {
-			&::before {
-				outline: rem(2) solid $accent-3;
-				outline-offset: 0;
-				border-radius: rem(20);
+			&:focus {
+				outline: none;
 			}
-		}
 
-		&::before {
-			content: '';
-			position: absolute;
-			inset: 0;
+			&:focus-visible {
+				&::before {
+					outline: rem(2) solid $accent-3;
+					outline-offset: 0;
+					border-radius: rem(20);
+				}
+			}
+
+			&::before {
+				content: '';
+				position: absolute;
+				inset: 0;
+			}
+
+			span {
+				position: relative;
+
+				&::after {
+					content: '';
+					position: absolute;
+					right: rem(-22);
+					bottom: rem(2);
+					width: rem(16);
+					height: rem(16);
+					background-image: url('#img/external-link.svg');
+					background-position: center;
+					background-size: cover;
+					background-repeat: no-repeat;
+				}
+			}
 		}
 	}
 }

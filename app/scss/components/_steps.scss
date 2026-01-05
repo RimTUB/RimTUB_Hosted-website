@@ -80,6 +80,10 @@
 		}
 	}
 
+	ul.steps__sub {
+		list-style: disc;
+	}
+
 	&__sub {
 		@include mobile {
 			padding-left: rem(15);

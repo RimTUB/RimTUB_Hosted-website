@@ -5,5 +5,141 @@
 		"price": "Price",
 		"contacts": "Contacts"
 	},
-	"panel": "Open {0:Pterodactyl control panel} (use your email to log in)."
+	"hero": {
+		"title": "Your hassle-free hosting for RimTUB",
+		"descr": "Forget about hours of server setup and configuration. RimTUB Hosted is everything you need to launch a powerful Telegram bot in just a few minutes. Simply register, top up your balance, complete a quick and simple setup, and your userbot is already running.",
+		"btn": "Get started"
+	},
+	"why": {
+		"title": "Why RimTUB Hosted?",
+		"card1": {
+			"title": "Security you can trust",
+			"descr1": "When it comes to your bot and data, there can be no compromises.",
+			"descr2": "Each userbot runs in a Docker container — an isolated environment completely separated from other users and the rest of the system. Think of Docker as an impregnable fortress: one container — one userbot. They don't see each other, can't access each other's data, and have no connection to the outside world. This is the pinnacle of security.",
+			"descr3": "Many hosting providers simply give you space on a server and hope for the best. We guarantee complete isolation at a level used by major corporations and banks."
+		},
+		"card2": {
+			"title": "Simplicity without compromise",
+			"descr1": "RimTUB Hosted uses {0} Pterodactyl Panel — a professional server management tool designed for people, not IT specialists.",
+			"descr2": "You don't need to deal with server intricacies. No need to write commands in the console. No need to understand how it all works inside. Pterodactyl is designed precisely to hide complexity and show only what you need — an intuitive interface where everything is obvious and simple."
+		},
+		"card3": {
+			"title": "RimTUB — software worth using",
+			"descr1": "RimTUB is a powerful and user-friendly open-source Telegram userbot that's easy to customize. Everything you need is already built-in, and to expand capabilities, you simply install the necessary modules. Easy to launch, flexible to configure, and completely under your control — RimTUB is designed to do more with less effort."
+		},
+		"card4": {
+			"title": "Support from the creator",
+			"descr1": "You're not communicating with faceless tech support or copy-paste responses. You're communicating with the developer himself, the person who created both RimTUB and RimTUB Hosted, and knows everything down to the finest details.",
+			"descr2": "Prompt and quality assistance isn't a promise, it's a standard.",
+			"descr3": "Have a question? Need help with setup? Running low on resources? Need a custom module?",
+			"descr4": "Don't hesitate to reach out — support is always here to help."
+		}
+	},
+	"work": {
+		"title": "How it works",
+		"steps1": {
+			"title": "Register with the bot",
+			"descr1": "Message the {0:RimTUB Hosted}, press /start, review and accept the user agreement."
+		},
+		"steps2": {
+			"title": "Create a Pterodactyl account",
+			"descr1": "In the bot, click on Pterodactyl account management. If you don't have an account yet, you'll immediately proceed to the creation process. Enter your email. You'll receive an email with a confirmation code — enter this code back in the bot.",
+			"descr2": "Why is this needed? To ensure the email is actually yours and that it works. This is important for the next step."
+		},
+		"steps3": {
+			"title": "Set up a password in Pterodactyl",
+			"descr1": "Immediately after creating an account in the bot, you'll receive an email about account creation. Click the {0:\"Setup your account\"} button and set a strong password."
+		},
+		"steps4": {
+			"title": "Create a RimTUB server",
+			"descr1": "Return to the bot, click Manage RimTUB → Create.",
+			"descr2": "The system will automatically:",
+			"descr3": "No manual actions needed.",
+			"sub": {
+				"descr1": "Allocate necessary resources",
+				"descr2": "Create a Docker container",
+				"descr3": "Download and install RimTUB"
+			}
+		},
+		"steps5": {
+			"title": "Create a Telegram bot",
+			"descr1": "While installation is in progress, open Telegram and find {0:@BotFather}",
+			"descr2": "Copy the token (123456:ABC-DEF…) — you'll need it later.",
+			"sub": {
+				"descr1": "Press Start or type /start",
+				"descr2": "Enter /newbot",
+				"descr3": "Come up with a name for your bot (for example, RimTUB_<your_nickname>_bot)",
+				"descr4": "Set a link for the bot",
+				"descr5": "BotFather will send you a long token like: 123456:ABC-DEF…",
+				"descr6": "Important: enter /setinline, select your bot and write any text (for example, asdfjwekjdsf)"
+			}
+		},
+		"steps6": {
+			"title": "Launch your userbot",
+			"descr1": "After loading, you'll receive a five-digit confirmation code in Telegram. In the console, enter this code (type it in the {0} {1:Type a command} field).",
+			"descr2": "If you have a cloud password set on your Telegram account, enter it.",
+			"descr3": "Repeat for all accounts (if there are multiple).",
+			"descr4": "Wait for everything to start up — and you're done! Your userbot is running."
+		},
+		"steps7": {
+			"title": "Final authorization",
+			"descr1": "Open the {0:Pterodactyl control panel} (use your email to log in).",
+			"descr2": "In the panel, select RimTUB from the server list.",
+			"descr3": "Go to the Startup tab and enter:",
+			"descr4": "Then open the Console tab and press the {0:Start} button.",
+			"descr5": "The first boot will take a couple of minutes — this is normal, everything needed for RimTUB to work is being installed.",
+			"sub": {
+				"descr1": "Your phone number(s) (if multiple — separated by commas)",
+				"descr2": "The bot token you copied from BotFather",
+				"descr3": "Configure the remaining settings as you see fit"
+			}
+		}
+	},
+	"features": {
+		"title": "What you get",
+		"item1": {
+			"title": "Absolute isolation and security",
+			"descr": "Docker containers provide complete protection of your data"
+		},
+		"item2": {
+			"title": "Full control without complexity",
+			"descr": "manage the bot through a clear interface and buttons, no commands, files, or other complications"
+		},
+		"item3": {
+			"title": "Reliability",
+			"descr": "guaranteed operation of your userbot"
+		},
+		"item4": {
+			"title": "Sufficient resources",
+			"descr": "300 MB RAM and 300 MB disk space — enough for half a dozen accounts"
+		},
+		"item5": {
+			"title": "Flexibility",
+			"descr": "easily scale as you grow, increasing the number of accounts"
+		},
+		"item6": {
+			"title": "Community and modules",
+			"descr": "access to a growing catalog of modules for RimTUB"
+		},
+		"item7": {
+			"title": "Personalization ",
+			"descr": "if you need a unique module, you can order it"
+		}
+	},
+	"price": {
+		"title": "Pricing",
+		"card": {
+			"item1": "RimTUB",
+			"item2": "One Telegram account",
+			"item3": "Support",
+			"descr": "+$0.01/day for each additional Telegram account"
+		},
+		"priceInfo": {
+			"title": "Here's what's included in your daily fee:",
+			"item1": "{0:Server infrastructure} — reliable servers that work 24/7",
+			"item2": "{0:Quality support} — prompt assistance from the creator of RimTUB and RimTUB Hosted himself",
+			"item3": "{0:Security} — protection of your bot at professional standards level",
+			"descr": "This is a fair price for the quality you receive."
+		}
+	}
 }
