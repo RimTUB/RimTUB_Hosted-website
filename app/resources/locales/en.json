@@ -63,7 +63,7 @@
 		},
 		"steps5": {
 			"title": "Create a Telegram bot",
-			"descr1": "While installation is in progress, open Telegram and find {0:@BotFather}",
+			"descr1": "While installation is in progress, open Telegram and find {0}",
 			"descr2": "Copy the token (123456:ABC-DEF…) — you'll need it later.",
 			"sub": {
 				"descr1": "Press Start or type /start",
@@ -132,7 +132,7 @@
 			"item1": "RimTUB",
 			"item2": "One Telegram account",
 			"item3": "Support",
-			"descr": "+$0.01/day for each additional Telegram account"
+			"descr": "{0:+$0.01}/day for each additional Telegram account"
 		},
 		"priceInfo": {
 			"title": "Here's what's included in your daily fee:",
@@ -141,5 +141,58 @@
 			"item3": "{0:Security} — protection of your bot at professional standards level",
 			"descr": "This is a fair price for the quality you receive."
 		}
+	},
+	"information": {
+		"title1": "Special needs?",
+		"title2": "Ready to start?",
+		"descr1": "If you need a non-standard configuration, additional resources, or special conditions — contact us. We're ready to discuss any individual solution that perfectly fits your needs.",
+		"descr2": "{0:Message on Telegram} → {1}",
+		"descr3": "Or contact via email for detailed consultation",
+		"descr4": "Your userbot can start working today."
+	},
+	"faq": {
+		"title": "FAQ",
+		"accordion1": {
+			"title": "Can I use multiple accounts?",
+			"descr": "Yes, the system supports multiple accounts on one userbot. Basic plan resources are enough for 4 to 6 accounts, depending on installed modules. If you need more, contact support."
+		},
+		"accordion2": {
+			"title": "What if I don't have enough resources?",
+			"descr": "Contact support, and we'll increase resource allocation personally for you."
+		},
+		"accordion3": {
+			"title": "Can I order a custom module?",
+			"descr": "Of course. We can develop it ourselves or recommend trusted developers. It won't be expensive."
+		},
+		"accordion4": {
+			"title": "What level of support?",
+			"descr": "Prompt and quality assistance from the developer of RimTUB & RimTUB Hosted. Any questions and suggestions."
+		}
+	},
+	"contacts": {
+		"title": "Contacts and links",
+		"card1": {
+			"title": "Telegram bot for management:"
+		},
+		"card2": {
+			"title": "Pterodactyl control panel:"
+		},
+		"card3": {
+			"title": "Telegram chat:"
+		},
+		"card4": {
+			"title": "Telegram support:"
+		},
+		"card5": {
+			"title": "Email:"
+		}
+	},
+	"short": {
+		"descr": "RimTUB Hosted ✅ — powerful, simple, reliable. Created for those who value quality."
+	},
+	"copyright": {
+		"descr1": "© RimTUB Hosted ✅. Official hosting for your RimTUB",
+		"link": "Terms of Service",
+		"links": "Support: {0}, {1}, {2}"
 	}
 }

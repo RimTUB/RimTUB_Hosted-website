@@ -96,5 +96,9 @@
 
 		margin: 0;
 		margin-top: $offset;
+
+		&--big {
+			font-size: rem(19);
+		}
 	}
 }
