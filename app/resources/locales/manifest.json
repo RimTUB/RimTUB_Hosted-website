@@ -1,0 +1,15 @@
+{
+  "languages": [
+    {
+      "code": "en",
+      "title": "English",
+      "file": "en.json"
+    },
+    {
+      "code": "ru",
+      "title": "Русский",
+      "file": "ru.json"
+    }
+  ],
+  "generated": "2026-01-10T16:30:06.302Z"
+}

@@ -92,7 +92,6 @@ import woff2 from 'gulp-ttf2woff2'
 
 // others
 import browserSync from 'browser-sync'
-import localtunnel from "localtunnel";
 import chalk from 'chalk'
 import { deleteAsync } from 'del'
 import fs from 'fs'
@@ -104,7 +103,8 @@ import plumber from 'gulp-plumber'
 import rename from 'gulp-rename'
 import replace from 'gulp-replace'
 import gulpZip from 'gulp-zip'
-import pathRoot from 'path'
+import localtunnel from "localtunnel"
+import { default as pathNode, default as pathRoot } from 'path'
 
 const rootFolder = pathRoot.basename(pathRoot.resolve());
 
@@ -489,9 +489,67 @@ export const ghpages = () => {
   })
 }
 
+export const generateLocalesManifest = (done) => {
+	const localesDir = pathNode.join(appFolder, 'resources', 'locales');
+	const outputFile = pathNode.join(localesDir, 'manifest.json');
+
+	try {
+		if (!fs.existsSync(localesDir)) {
+			console.log(chalk.yellow('Директория locales не найдена. Пропускаем генерацию манифеста.'));
+			done();
+			return;
+		}
+
+		const files = fs.readdirSync(localesDir);
+		const languages = [];
+
+		files.forEach(file => {
+			if (file.endsWith('.json') && file !== 'manifest.json') {
+				const langCode = file.replace('.json', '');
+				const filePath = pathNode.join(localesDir, file);
+
+				try {
+					const content = fs.readFileSync(filePath, 'utf8');
+					const data = JSON.parse(content);
+
+					if (data.__title__) {
+						languages.push({
+							code: langCode,
+							title: data.__title__,
+							file: file
+						});
+						console.log(chalk.green(`✓ Найден язык: ${langCode} (${data.__title__})`));
+					} else {
+						console.log(chalk.yellow(`⚠ Файл ${file} не содержит __title__`));
+					}
+				} catch (error) {
+					console.log(chalk.red(`✗ Ошибка чтения ${file}:`), error.message);
+				}
+			}
+		});
+
+		languages.sort((a, b) => a.code.localeCompare(b.code));
+
+		const manifest = {
+			languages,
+			generated: new Date().toISOString()
+		};
+
+		fs.writeFileSync(outputFile, JSON.stringify(manifest, null, 2), 'utf8');
+
+		console.log(chalk.green.bold(`\n✓ Манифест создан: ${outputFile}`));
+		console.log(chalk.cyan(`✓ Найдено языков: ${languages.length}\n`));
+
+	} catch (error) {
+		console.log(chalk.red('✗ Ошибка при генерации манифеста:'), error.message);
+	}
+
+	done();
+};
+
 // exports
 
-const build = series(clean, parallel(html, js, sprites, images, imagesCopy, resources, fonts), autoconnectfont, scss, jslint, validateHTML, cacheTask);
+const build = series(clean, generateLocalesManifest, parallel(html, js, sprites, images, imagesCopy, resources, fonts), autoconnectfont, scss, jslint, validateHTML, cacheTask);
 const serve = series(watcher);
 const go = series(build, watcher);
 

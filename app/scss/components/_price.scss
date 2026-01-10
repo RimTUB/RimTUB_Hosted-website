@@ -73,7 +73,7 @@
 	}
 
 	&__price {
-		@extend .center;
+		@include fac;
 
 		margin-bottom: $offset;
 		font-weight: 900;
@@ -97,7 +97,7 @@
 		margin: 0;
 		margin-top: $offset;
 
-		&--big {
+		&-big {
 			font-size: rem(19);
 		}
 	}

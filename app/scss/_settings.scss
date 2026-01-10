@@ -24,6 +24,10 @@
 	font-size: fluid(36, 28);
 }
 
+.page {
+	scroll-behavior: smooth;
+}
+
 .ptero-btn {
 	display: inline-block;
 	border-color: rgba(37, 99, 235, 1);

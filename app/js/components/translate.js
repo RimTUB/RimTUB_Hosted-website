@@ -61,23 +61,73 @@ class TranslateMenu {
 
 class Translate {
 	constructor(defaultLang = 'ru') {
-		this.currentLang = sessionStorage.getItem('lang') || defaultLang
+		this.currentLang = localStorage.getItem('lang') || defaultLang
+		this.defaultLang = defaultLang
 		this.translations = {}
-		this.availableLanguages = this.getAvailableLanguages()
+		this.availableLanguages = []
+		this.languageTitles = {}
 	}
 
-	getAvailableLanguages() {
-		const langLinks = document.querySelectorAll('[data-lang-switch]')
-		const languages = []
-
-		langLinks.forEach(link => {
-			const lang = link.dataset.langSwitch
-			if (lang && !languages.includes(lang)) {
-				languages.push(lang)
+	async loadManifest() {
+		try {
+			const response = await fetch('resources/locales/manifest.json')
+			if (!response.ok) {
+				throw new Error('Manifest not found')
 			}
-		})
 
-		return languages
+			const manifest = await response.json()
+
+			if (manifest.languages && Array.isArray(manifest.languages)) {
+				this.availableLanguages = manifest.languages.map(lang => lang.code)
+
+				manifest.languages.forEach(lang => {
+					this.languageTitles[lang.code] = lang.title
+				})
+
+				return manifest.languages
+			}
+
+			return []
+		} catch (error) {
+			console.error('Error loading manifest:', error)
+			console.warn('Запустите gulp сборку для генерации manifest.json')
+			return []
+		}
+	}
+
+	generateLanguageMenu(languages) {
+		const translateContainer = document.querySelector('.translate')
+		if (!translateContainer) return
+
+		const list = translateContainer.querySelector('.translate__list')
+		if (!list) return
+
+		list.innerHTML = ''
+
+		languages.forEach(lang => {
+			const li = document.createElement('li')
+			li.className = 'translate__item'
+
+			if (lang.code === this.currentLang) {
+				li.classList.add('active')
+			}
+
+			const link = document.createElement('a')
+			link.className = 'translate__link'
+			link.href = ''
+			link.target = '_self'
+			link.lang = lang.code
+			link.dataset.langSwitch = lang.code
+			link.textContent = lang.title
+
+			link.addEventListener('click', (e) => {
+				e.preventDefault()
+				this.changeLanguage(lang.code)
+			})
+
+			li.appendChild(link)
+			list.appendChild(li)
+		})
 	}
 
 	async loadLanguage(lang) {
@@ -92,8 +142,14 @@ class Translate {
 				throw new Error(`Failed to load ${lang}`)
 			}
 
-			this.translations[lang] = await response.json()
-			return this.translations[lang]
+			const data = await response.json()
+			this.translations[lang] = data
+
+			if (data.__title__) {
+				this.languageTitles[lang] = data.__title__
+			}
+
+			return data
 		} catch (error) {
 			console.error(`Error loading language ${lang}:`, error)
 			return null
@@ -124,11 +180,16 @@ class Translate {
 		await this.loadLanguage(lang)
 		this.currentLang = lang
 
-		sessionStorage.setItem('lang', lang)
+		localStorage.setItem('lang', lang)
 
 		const html = document.documentElement
 		html.setAttribute('lang', lang)
 		html.lang = lang
+
+		const translateBlock = document.querySelector('.translate')
+		if (translateBlock) {
+			translateBlock.setAttribute('lang', lang)
+		}
 
 		this.updatePage()
 		this.updateActiveMenuItem(lang)
@@ -240,38 +301,42 @@ class Translate {
 		const chooseButton = document.querySelector('.translate__choose')
 
 		if (chooseButton) {
-			const langLink = document.querySelector(`[data-lang-switch="${lang}"]`)
-			if (langLink) {
-				chooseButton.textContent = langLink.textContent
-				chooseButton.lang = lang
-			}
+			const title = this.languageTitles[lang] || lang.toUpperCase()
+			chooseButton.textContent = title
+			chooseButton.lang = lang
 		}
 	}
 
 	async init() {
-		await this.loadLanguage(this.currentLang)
+		const languages = await this.loadManifest()
 
-		this.availableLanguages.forEach(lang => {
-			if (lang !== this.currentLang) {
-				this.loadLanguage(lang)
-			}
-		})
+		if (languages.length === 0) {
+			console.error('No languages found. Run gulp build.')
+			return
+		}
+
+		// Проверяем, существует ли сохраненный язык в доступных языках
+		if (!this.availableLanguages.includes(this.currentLang)) {
+			console.warn(`Saved language ${this.currentLang} not found. Using default: ${this.defaultLang}`)
+			this.currentLang = this.defaultLang
+			localStorage.setItem('lang', this.defaultLang)
+		}
+
+		this.generateLanguageMenu(languages)
+		await this.loadLanguage(this.currentLang)
 
 		const html = document.documentElement
 		html.setAttribute('lang', this.currentLang)
 		html.lang = this.currentLang
 
+		const translateBlock = document.querySelector('.translate')
+		if (translateBlock) {
+			translateBlock.setAttribute('lang', this.currentLang)
+		}
+
 		this.updatePage()
 		this.updateActiveMenuItem(this.currentLang)
 		this.updateChooseButton(this.currentLang)
-
-		document.querySelectorAll('[data-lang-switch]').forEach(link => {
-			link.addEventListener('click', (e) => {
-				e.preventDefault()
-				const lang = link.dataset.langSwitch
-				this.changeLanguage(lang)
-			})
-		})
 	}
 }
 
