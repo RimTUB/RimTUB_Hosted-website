@@ -44,6 +44,16 @@
 		}
 	}
 
+	&__faq {
+		@include fac;
+
+		gap: rem(5);
+
+		p {
+			margin: 0;
+		}
+	}
+
 	&__top {
 		margin-bottom: $offset;
 	}

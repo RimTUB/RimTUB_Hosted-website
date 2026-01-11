@@ -43,7 +43,7 @@
 
 		&:focus-visible {
 			outline: rem(2) solid $accent-3;
-			outline-offset: 0;
+			outline-offset: rem(-1);
 			border-radius: var(--radius);
 		}
 

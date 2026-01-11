@@ -4,6 +4,7 @@
 		"work": "How it works",
 		"features": "Features",
 		"price": "Price",
+		"faq": "FAQ",
 		"contacts": "Contacts"
 	},
 	"hero": {
@@ -155,7 +156,7 @@
 		"title": "FAQ",
 		"accordion1": {
 			"title": "Can I use multiple accounts?",
-			"descr": "Yes, the system supports multiple accounts on one userbot. Basic plan resources are enough for 4 to 6 accounts, depending on installed modules. If you need more, contact support."
+			"descr": "Yes, the system supports multiple accounts on one userbot. Basic plan resources are enough to 6 accounts, depending on installed modules. If you need more, contact support."
 		},
 		"accordion2": {
 			"title": "What if I don't have enough resources?",
@@ -186,6 +187,9 @@
 		},
 		"card5": {
 			"title": "Email:"
+		},
+		"card6": {
+			"title": "FAQ for customers:"
 		}
 	},
 	"short": {
@@ -194,6 +198,16 @@
 	"copyright": {
 		"descr1": "© RimTUB Hosted ✅. Official hosting for your RimTUB",
 		"link": "Terms of Service",
-		"links": "Support: {0}, {1}, {2}"
-	}
+		"links": "Support: {0}, {1}, {2}",
+		"faqLink": "FAQ for customers (troubleshooting)"
+	},
+	"troubleshooting": [{
+			"q": "Question  1",
+			"a": "Answer 1"
+		},
+		{
+			"q": "Question  2",
+			"a": "Answer 2"
+		}
+	]
 }

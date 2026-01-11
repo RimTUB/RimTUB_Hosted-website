@@ -2,7 +2,8 @@ class Menu {
 	selectors = {
 		header: '.header',
 		burger: '.burger',
-		menu: '.menu'
+		menu: '.menu',
+		links: '.menu__link'
 	}
 
 	constructor() {
@@ -10,12 +11,24 @@ class Menu {
 		this.menu = document.querySelector(this.selectors.menu)
 		this.header = document.querySelector(this.selectors.header)
 		this.body = document.body
-		this.lang = localStorage.getItem('lang')
+		this.links = document.querySelectorAll(this.selectors.links)
+
+		this.scrollPos = 0
 
 		this.init()
 	}
 
+	closeMenuClickLink() {
+		this.links.forEach((e) => {
+			e.addEventListener('click', () => {
+				this.closeMenu()
+			})
+		})
+	}
+
 	init() {
+		this.closeMenuClickLink()
+
 		this.burger.addEventListener('click', () => {
 			if (this.header.classList.contains('open')) {
 				this.closeMenu()
@@ -27,15 +40,23 @@ class Menu {
 	}
 
 	openMenu() {
-		this.header.classList.add('open')
-		this.burger.setAttribute('aria-expanded', 'true')
-		this.body.classList.add('disabled-scroll')
+  this.scrollPos = window.scrollY
+
+  this.body.style.top = `-${this.scrollPos}px`
+  this.body.classList.add('disabled-scroll')
+  this.header.classList.add('open')
+  this.burger.setAttribute('aria-expanded', 'true')
 	}
 
 	closeMenu() {
-		this.header.classList.remove('open')
-		this.burger.setAttribute('aria-expanded', 'false')
-		this.body.classList.remove('disabled-scroll')
+  this.header.classList.remove('open')
+  this.burger.setAttribute('aria-expanded', 'false')
+  this.body.classList.remove('disabled-scroll')
+  this.body.style.top = ''
+  window.scrollTo({
+		top: this.scrollPos,
+		behavior: 'instant'
+	})
 	}
 }
 

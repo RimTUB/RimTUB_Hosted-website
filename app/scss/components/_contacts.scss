@@ -6,6 +6,13 @@
 	background-color: $background-secondary;
 	padding-block: rem(80);
 
+	.card__item {
+		@include hover {
+			transform: translate(0, 0);
+			transform: scale(1.05);
+		}
+	}
+
 	&__icon {
 		display: block;
 		margin-bottom: rem(5);

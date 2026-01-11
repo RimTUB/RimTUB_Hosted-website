@@ -315,7 +315,6 @@ class Translate {
 			return
 		}
 
-		// Проверяем, существует ли сохраненный язык в доступных языках
 		if (!this.availableLanguages.includes(this.currentLang)) {
 			console.warn(`Saved language ${this.currentLang} not found. Using default: ${this.defaultLang}`)
 			this.currentLang = this.defaultLang
