@@ -60,4 +60,8 @@ class Menu {
 	}
 }
 
-new Menu()
+const menuOther = document.querySelector('.menu')
+
+if (menuOther) {
+	new Menu()
+}

@@ -1,6 +1,11 @@
+/* stylelint-disable declaration-no-important */
 @use '../base'as *;
 @use '../mixins'as *;
 @use '../settings'as *;
+
+.logo-troubleshooting {
+	font-size: fluid(45, 28) !important;
+}
 
 .logo {
 	font-size: fluid(45, 30);

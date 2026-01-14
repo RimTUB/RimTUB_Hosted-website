@@ -1,4 +1,4 @@
-import TransferElements from 'transfer-elements';
+import TransferElements from 'transfer-elements'
 
 class TranslateMenu {
 	selectors = {
@@ -66,11 +66,17 @@ class Translate {
 		this.translations = {}
 		this.availableLanguages = []
 		this.languageTitles = {}
+		this.basePath = this.getBasePath()
+	}
+
+	getBasePath() {
+		const depth = (window.location.pathname.match(/\//g) || []).length - 1
+		return depth > 0 ? '../'.repeat(depth) : './'
 	}
 
 	async loadManifest() {
 		try {
-			const response = await fetch('resources/locales/manifest.json')
+			const response = await fetch(`${this.basePath}resources/locales/manifest.json`)
 			if (!response.ok) {
 				throw new Error('Manifest not found')
 			}
@@ -136,7 +142,7 @@ class Translate {
 		}
 
 		try {
-			const response = await fetch(`resources/locales/${lang}.json`)
+			const response = await fetch(`${this.basePath}resources/locales/${lang}.json`)
 
 			if (!response.ok) {
 				throw new Error(`Failed to load ${lang}`)
@@ -348,12 +354,16 @@ if (document.readyState === 'loading') {
 	translator.init()
 }
 
-new TransferElements({
-	sourceElement: document.querySelector('.translate'),
+const menuOther = document.querySelector('.menu')
+
+if (menuOther) {
+	new TransferElements({
+	sourceElement: document?.querySelector('.translate'),
 	breakpoints: {
 		1024: {
-			targetElement: document.querySelector('.menu'),
+			targetElement: document?.querySelector('.menu'),
 			targetPosition: 1
 		}
 	}
 })
+}

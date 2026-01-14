@@ -7,7 +7,7 @@ const buildFolder = './dist/';
 
 const path = {
   app: {
-    html: [`${appFolder}*.html`, `!${appFolder}_*.html`, `!${appFolder}blocks/*.html`],
+    html: [`${appFolder}*.html`, `${appFolder}troubleshooting/**/*.html`, `!${appFolder}_*.html`, `!${appFolder}blocks/*.html`],
 		pug: [`${appFolder}pug/pages/*.pug`, `!${appFolder}pug/pages/_*.pug`],
     css: `${appFolder}scss/main.scss`,
 		js: [`${appFolder}js/main.js`, `!${appFolder}js/_*.js`],
@@ -29,7 +29,7 @@ const path = {
   },
 
   watch: {
-    html: `${appFolder}**/*.html`,
+    html: [`${appFolder}**/*.html`, `${appFolder}troubleshooting/**/*.html`],
     pug: `${appFolder}pug/**/*.pug`,
     css: `${appFolder}scss/**/*.scss`,
 		js: `${appFolder}js/**/*.js`,
@@ -166,7 +166,7 @@ export const html = () => {
 		return pug()
 	}
 	else {
-		return src(path.app.html)
+		return src(path.app.html, {base: appFolder})
 		.pipe(plumber(notify.onError({
 			title: "HTML",
 			message: "Error: <%= error.message %>"

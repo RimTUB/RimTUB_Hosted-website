@@ -21,7 +21,10 @@
 	@include laptop {
 		display: flex;
 		justify-content: center;
-		margin-top: rem(40);
+
+		.faq:not(.faq-customers) {
+			margin-top: rem(40);
+		}
 	}
 
 	&__list {
