@@ -4,21 +4,33 @@ class TranslateMenu {
 	selectors = {
 		translate: '.translate',
 		choose: '.translate__choose',
-		list: '.translate__list'
+		list: '.translate__list',
+		link: '.translate__link'
 	}
 
 	constructor() {
 		this.translate = document.querySelector(this.selectors.translate)
 		this.choose = this.translate.querySelector(this.selectors.choose)
 		this.list = this.translate.querySelector(this.selectors.list)
+		this.links = this.translate.querySelectorAll(this.selectors.link)
 		this.init()
 	}
 
 	init() {
 		this.translate.addEventListener('keydown', (e) => {
-			if (e.key === 'Enter' || e.key === ' ') {
-				e.preventDefault()
-				this.openMenu()
+			if (e.target.classList.contains('translate__link') && !e.target.classList.contains('translate__choose')) {
+				if (e.key === ' ') {
+					e.preventDefault()
+					e.target.click()
+					return
+				}
+			}
+
+			if (e.target.classList.contains('translate__choose')) {
+				if (e.key === ' ') {
+					e.preventDefault()
+					this.openMenu()
+				}
 			}
 
 			if (e.key === 'Escape') {
@@ -288,7 +300,9 @@ class Translate {
 		})
 
 		document.dispatchEvent(new CustomEvent('languageChanged', {
-			detail: { lang: this.currentLang }
+			detail: {
+				lang: this.currentLang
+			}
 		}))
 	}
 
@@ -358,12 +372,12 @@ const menuOther = document.querySelector('.menu')
 
 if (menuOther) {
 	new TransferElements({
-	sourceElement: document?.querySelector('.translate'),
-	breakpoints: {
-		1024: {
-			targetElement: document?.querySelector('.menu'),
-			targetPosition: 1
+		sourceElement: document?.querySelector('.translate'),
+		breakpoints: {
+			1024: {
+				targetElement: document?.querySelector('.menu'),
+				targetPosition: 1
+			}
 		}
-	}
-})
+	})
 }
