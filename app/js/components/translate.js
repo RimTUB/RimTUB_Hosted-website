@@ -12,7 +12,6 @@ class TranslateMenu {
 		this.translate = document.querySelector(this.selectors.translate)
 		this.choose = this.translate.querySelector(this.selectors.choose)
 		this.list = this.translate.querySelector(this.selectors.list)
-		this.links = this.translate.querySelectorAll(this.selectors.link)
 		this.init()
 	}
 
@@ -22,15 +21,12 @@ class TranslateMenu {
 				if (e.key === ' ') {
 					e.preventDefault()
 					e.target.click()
-					return
 				}
 			}
 
-			if (e.target.classList.contains('translate__choose')) {
-				if (e.key === ' ') {
-					e.preventDefault()
-					this.openMenu()
-				}
+			if (e.target.classList.contains('translate__choose') && e.key === ' ') {
+				e.preventDefault()
+				this.openMenu()
 			}
 
 			if (e.key === 'Escape') {
@@ -73,17 +69,65 @@ class TranslateMenu {
 
 class Translate {
 	constructor(defaultLang = 'ru') {
-		this.currentLang = localStorage.getItem('lang') || defaultLang
+		const urlLang = this.getLangFromURL()
+		this.currentLang = urlLang || localStorage.getItem('lang') || defaultLang
 		this.defaultLang = defaultLang
 		this.translations = {}
 		this.availableLanguages = []
 		this.languageTitles = {}
 		this.basePath = this.getBasePath()
+
+		if (urlLang) {
+			localStorage.setItem('lang', urlLang)
+		}
+
+		this.interceptLinks()
 	}
 
 	getBasePath() {
 		const depth = (window.location.pathname.match(/\//g) || []).length - 1
 		return depth > 0 ? '../'.repeat(depth) : './'
+	}
+
+	getLangFromURL() {
+		const params = new URLSearchParams(window.location.search)
+		return params.get('lang')
+	}
+
+	addLangToURL(url, lang) {
+		try {
+			const urlObj = new URL(url, window.location.origin)
+			urlObj.searchParams.set('lang', lang)
+			return urlObj.pathname + urlObj.search + urlObj.hash
+		} catch (e) {
+			const separator = url.includes('?') ? '&' : '?'
+			return `${url}${separator}lang=${lang}`
+		}
+	}
+
+	interceptLinks() {
+		document.addEventListener('click', (e) => {
+			const link = e.target.closest('a')
+
+			if (!link || !link.href) return
+
+			const href = link.getAttribute('href')
+
+			if (
+				!href ||
+				href.startsWith('http') ||
+				href.startsWith('//') ||
+				href.startsWith('#') ||
+				link.classList.contains('translate__link')
+			) {
+				return
+			}
+
+			e.preventDefault()
+
+			const newHref = this.addLangToURL(href, this.currentLang)
+			window.location.href = newHref
+		})
 	}
 
 	async loadManifest() {
@@ -107,8 +151,7 @@ class Translate {
 
 			return []
 		} catch (error) {
-			console.error('Error loading manifest:', error)
-			console.warn('Запустите gulp сборку для генерации manifest.json')
+			console.error('Ошибка загрузки манифеста:', error)
 			return []
 		}
 	}
@@ -132,7 +175,7 @@ class Translate {
 
 			const link = document.createElement('a')
 			link.className = 'translate__link'
-			link.href = ''
+			link.href = `?lang=${lang.code}`
 			link.target = '_self'
 			link.lang = lang.code
 			link.dataset.langSwitch = lang.code
@@ -157,7 +200,7 @@ class Translate {
 			const response = await fetch(`${this.basePath}resources/locales/${lang}.json`)
 
 			if (!response.ok) {
-				throw new Error(`Failed to load ${lang}`)
+				throw new Error(`Не удалось загрузить ${lang}`)
 			}
 
 			const data = await response.json()
@@ -169,7 +212,7 @@ class Translate {
 
 			return data
 		} catch (error) {
-			console.error(`Error loading language ${lang}:`, error)
+			console.error(`Ошибка загрузки языка ${lang}:`, error)
 			return null
 		}
 	}
@@ -191,27 +234,15 @@ class Translate {
 
 	async changeLanguage(lang) {
 		if (!this.availableLanguages.includes(lang)) {
-			console.error(`Language ${lang} is not available`)
+			console.error(`Язык ${lang} недоступен`)
 			return
 		}
 
-		await this.loadLanguage(lang)
-		this.currentLang = lang
-
 		localStorage.setItem('lang', lang)
 
-		const html = document.documentElement
-		html.setAttribute('lang', lang)
-		html.lang = lang
-
-		const translateBlock = document.querySelector('.translate')
-		if (translateBlock) {
-			translateBlock.setAttribute('lang', lang)
-		}
-
-		this.updatePage()
-		this.updateActiveMenuItem(lang)
-		this.updateChooseButton(lang)
+		const url = new URL(window.location.href)
+		url.searchParams.set('lang', lang)
+		window.location.href = url.toString()
 	}
 
 	replaceTextNodes(element, translation) {
@@ -260,7 +291,7 @@ class Translate {
 
 			const textNodes = []
 			let node
-			while (node = walker.nextNode()) {
+			while ((node = walker.nextNode())) {
 				if (node.nodeValue.trim()) {
 					textNodes.push(node)
 				}
@@ -300,9 +331,7 @@ class Translate {
 		})
 
 		document.dispatchEvent(new CustomEvent('languageChanged', {
-			detail: {
-				lang: this.currentLang
-			}
+			detail: { lang: this.currentLang }
 		}))
 	}
 
@@ -331,14 +360,20 @@ class Translate {
 		const languages = await this.loadManifest()
 
 		if (languages.length === 0) {
-			console.error('No languages found. Run gulp build.')
+			console.error('Языки не найдены. Запустите: gulp --build')
 			return
 		}
 
 		if (!this.availableLanguages.includes(this.currentLang)) {
-			console.warn(`Saved language ${this.currentLang} not found. Using default: ${this.defaultLang}`)
 			this.currentLang = this.defaultLang
 			localStorage.setItem('lang', this.defaultLang)
+		}
+
+		const urlLang = this.getLangFromURL()
+		if (!urlLang) {
+			const url = new URL(window.location.href)
+			url.searchParams.set('lang', this.currentLang)
+			window.history.replaceState({}, '', url.toString())
 		}
 
 		this.generateLanguageMenu(languages)
@@ -346,7 +381,6 @@ class Translate {
 
 		const html = document.documentElement
 		html.setAttribute('lang', this.currentLang)
-		html.lang = this.currentLang
 
 		const translateBlock = document.querySelector('.translate')
 		if (translateBlock) {
@@ -372,10 +406,10 @@ const menuOther = document.querySelector('.menu')
 
 if (menuOther) {
 	new TransferElements({
-		sourceElement: document?.querySelector('.translate'),
+		sourceElement: document.querySelector('.translate'),
 		breakpoints: {
 			1024: {
-				targetElement: document?.querySelector('.menu'),
+				targetElement: document.querySelector('.menu'),
 				targetPosition: 1
 			}
 		}

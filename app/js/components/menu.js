@@ -14,6 +14,7 @@ class Menu {
 		this.links = document.querySelectorAll(this.selectors.links)
 
 		this.scrollPos = 0
+		this.mobileDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0
 
 		this.init()
 	}
@@ -53,10 +54,16 @@ class Menu {
   this.burger.setAttribute('aria-expanded', 'false')
   this.body.classList.remove('disabled-scroll')
   this.body.style.top = ''
-  window.scrollTo({
-		top: this.scrollPos,
-		behavior: 'instant'
-	})
+	
+	if (this.mobileDevice) {
+		window.scrollTo({
+			top: this.scrollPos,
+			behavior: 'instant'
+		})
+	}
+	else {
+		window.scrollTo(0, this.scrollPos)
+	}
 	}
 }
 
