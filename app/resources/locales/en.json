@@ -78,13 +78,6 @@
 		},
 		"steps6": {
 			"title": "Launch your userbot",
-			"descr1": "After loading, you'll receive a five-digit confirmation code in Telegram. In the console, enter this code (type it in the {0} {1:Type a command} field).",
-			"descr2": "If you have a cloud password set on your Telegram account, enter it.",
-			"descr3": "Repeat for all accounts (if there are multiple).",
-			"descr4": "Wait for everything to start up — and you're done! Your userbot is running."
-		},
-		"steps7": {
-			"title": "Final authorization",
 			"descr1": "Open the {0:Pterodactyl control panel} (use your email to log in).",
 			"descr2": "In the panel, select RimTUB from the server list.",
 			"descr3": "Go to the Startup tab and enter:",
@@ -95,6 +88,13 @@
 				"descr2": "The bot token you copied from BotFather",
 				"descr3": "Configure the remaining settings as you see fit"
 			}
+		},
+		"steps7": {
+			"title": "Final authorization",
+			"descr1": "After loading, you'll receive a five-digit confirmation code in Telegram. In the console, enter this code (type it in the {0} {1:Type a command} field).",
+			"descr2": "If you have a cloud password set on your Telegram account, enter it.",
+			"descr3": "Repeat for all accounts (if there are multiple).",
+			"descr4": "Wait for everything to start up — and you're done! Your userbot is running."
 		}
 	},
 	"features": {
